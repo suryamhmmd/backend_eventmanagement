@@ -4,7 +4,7 @@ const router = require('express').Router()
 // QUERY LOGIN
 router.post('/user/login', (req, res)=>{
     let {email, password} = req.body
-    let sql = `SELECT * FROM user WHERE email = '${email}'`
+    let sql = `SELECT id_user, nama, email, password FROM user WHERE email = '${email}'`
     
     conn.query(sql, (err, result)=>{
         if(err) return res.send(err)
@@ -15,8 +15,9 @@ router.post('/user/login', (req, res)=>{
         if(password !== _password){
             return res.send({error: "Email or Password is Invalid"})
         }
+        let hasil = {nama: user.nama, email:user.email, id_user:user.id_user}
         // console.log(user)
-        res.send(user)
+        res.send(hasil)
     })
 })
 

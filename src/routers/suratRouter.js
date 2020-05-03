@@ -106,7 +106,7 @@ router.get('/edit_mou/:id_perjanjian', (req, res)=>{
 })
 
 router.put(`/save_mou/:id_perjanjian`, (req, res)=>{
-    let sql = `UPDATE mou SET ? WHERE id_perjanjian= ${req.params.id_perjanjian}`
+    let sql = `UPDATE perjanjian SET ? WHERE id_perjanjian= ${req.params.id_perjanjian}`
     let data = req.body
 
     conn.query(sql, data, (err, result)=>{

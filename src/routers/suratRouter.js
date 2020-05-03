@@ -76,4 +76,43 @@ router.put(`/save_proposal/:id_proposal`, (req, res)=>{
         res.send(result)
     })
 })
+
+//ROUTER PROPOSAL
+router.post('/mou', (req, res)=>{
+    let sql = `INSERT INTO perjanjian SET ?`
+    let data = req.body
+    
+    conn.query(sql, data, (err, result)=>{
+        if(err) return res.send({error:err.message})
+        res.send(result)
+    })
+})
+
+router.get('/mou/:id_event', (req, res)=>{
+    let sql = `SELECT * from perjanjian where id_event = '${req.params.id_event}'`
+
+    conn.query(sql, (err, result)=>{
+        if(err) return res.send({error: err.message})
+        res.send(result)
+    })
+})
+
+router.get('/mou/:id_perjanjian', (req, res)=>{
+    let sql = `SELECT * from perjanjian where id_perjanjian = '${req.params.id_perjanjian}'`
+    conn.query(sql, (err, result)=>{
+        if(err) return res.send({error: err.message})
+        res.send(result)
+    })
+})
+
+router.put(`/save_mou/:id_perjanjian`, (req, res)=>{
+    let sql = `UPDATE mou SET ? WHERE id_perjanjian= ${req.params.id_perjanjian}`
+    let data = req.body
+
+    conn.query(sql, data, (err, result)=>{
+        if(err) return res.send({error: err.message})
+        res.send(result)
+    })
+})
+
 module.exports = router

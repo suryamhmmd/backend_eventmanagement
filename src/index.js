@@ -4,6 +4,7 @@ const cors = require('cors')
 const userRouter = require('./routers/adminRouter')
 const evetRouter = require('./routers/eventRouter')
 const suratRouter = require('./routers/suratRouter')
+const financeRouter = require('./routers/financeRouter')
 
 const app = express()
 // const port = process.env.PORT || 2019
@@ -14,6 +15,7 @@ app.use(express.json())
 app.use(userRouter)
 app.use(evetRouter)
 app.use(suratRouter)
+app.use(financeRouter)
 
 app.listen(port, ()=>{
     console.log(`running at port ${port}`)

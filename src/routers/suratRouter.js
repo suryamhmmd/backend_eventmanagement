@@ -11,6 +11,17 @@ router.post('/surat', (req, res)=>{
     })
 })
 
+router.get(`/surat_terakhir/:id_event`, (req, res)=>{
+    let sql = `SELECT * from surat where id_event= '${req.params.id_event}'`
+
+    conn.query(sql, (err, result)=>{
+        if(err) return res.send({error: err.message})
+        // console.log(result.reverse())
+        let data = result.reverse().slice(0,5)
+        res.send(data)
+    })
+})
+
 router.get('/surat/:id_event', (req, res)=>{
     let sql = `SELECT * from surat where id_event = '${req.params.id_event}'`
 
@@ -85,6 +96,17 @@ router.post('/mou', (req, res)=>{
     conn.query(sql, data, (err, result)=>{
         if(err) return res.send({error:err.message})
         res.send(result)
+    })
+})
+
+router.get('/mou_terakhir/:id_event', (req, res)=>{
+    let sql = `SELECT * from perjanjian where id_event='${req.params.id_event}'`
+
+    conn.query(sql, (err, result)=>{
+        if(err) return res.send({error:err.message})
+        let data = result.reverse()
+        let hasil = data.slice(0,5)
+        res.send(hasil)
     })
 })
 
